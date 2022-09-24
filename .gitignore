@@ -1,6 +1,7 @@
 dwm
+dwm.png
 dwm.o
 drw.o
 config.h
-*.org
+*.orig
 *.rej
