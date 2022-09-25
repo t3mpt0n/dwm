@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 3;        /* border pixel of windows */
+static const unsigned int borderpx  = 5;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
@@ -70,7 +70,6 @@ static const char *passmenu[] = { "passmenu", NULL};
 static const char *firefox[] = { "firefox", NULL};
 static const char *editor[] = { "emacsclient", "-c", "-a", "'emacs'", NULL};
 static const char *ranger[] = { "alacritty", "-e", "ranger", NULL};
-static const char *discord[] = { "discord", NULL }; 
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -78,9 +77,8 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = passmenu } },
 	{ MODKEY,                       XK_w,      spawn,          {.v = firefox} },
-	{ MODKEY,                       XK_e,      spawn,          {.v = editor} }, 
+	{ MODKEY,                       XK_e,      spawn,          {.v = editor} },
 	{ MODKEY,			XK_r,	   spawn,	   {.v = ranger} },
-	{ MODKEY|ShiftMask,             XK_d,      spawn,          {.v = discord } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
