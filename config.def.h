@@ -45,11 +45,14 @@ static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
+#include "fibonacci.c"
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]=",      tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
+ 	{ "[@]",      spiral },
+ 	{ "[\\]",      dwindle },
 };
 
 /* key definitions */
@@ -71,6 +74,7 @@ static const char *firefox[] = { "firefox", NULL};
 static const char *editor[] = { "emacsclient", "-c", "-a", "'emacs'", NULL};
 static const char *ranger[] = { "alacritty", "-e", "ranger", NULL};
 static const char *discord[] = { "discord", NULL }; 
+static const char *steam[] = { "steam", NULL }; 
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -79,8 +83,9 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = passmenu } },
 	{ MODKEY,                       XK_w,      spawn,          {.v = firefox} },
 	{ MODKEY,                       XK_e,      spawn,          {.v = editor} }, 
-	{ MODKEY,			XK_r,	   spawn,	   {.v = ranger} },
+	{ MODKEY|ControlMask,		XK_r,	   spawn,	   {.v = ranger} },
 	{ MODKEY|ShiftMask,             XK_d,      spawn,          {.v = discord } },
+	{ MODKEY|ShiftMask,		XK_s,	   spawn,	   {.v = steam } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -94,6 +99,8 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,                       XK_r,      setlayout,      {.v = &layouts[3]} },
+	{ MODKEY|ShiftMask,             XK_r,      setlayout,      {.v = &layouts[4]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,            	        XK_z,      togglefullscr,  {0} },
