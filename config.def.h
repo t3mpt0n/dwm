@@ -53,7 +53,7 @@ static const Layout layouts[] = {
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
  	{ "[@]",      spiral },
- 	{ "[\\]",      dwindle },
+ 	{ "[\\]",     dwindle },
 };
 
 /* key definitions */
@@ -76,17 +76,25 @@ static const char *editor[] = { "emacsclient", "-c", "-a", "'emacs'", NULL};
 static const char *ranger[] = { "alacritty", "-e", "ranger", NULL};
 static const char *discord[] = { "discord", NULL }; 
 static const char *steam[] = { "steam", NULL }; 
+static const char *ncmpcpp[] = { "alacritty", "-e", "ncmpcpp-ueberzug", NULL};
+static const char *volmute[]     = { "amixer", "set", "Master", "toggle", NULL };
+static const char *volup[]       = { "amixer", "set", "Master", "5%+", NULL };
+static const char *voldown[]     = { "amixer", "set", "Master", "5%-", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = passmenu } },
+	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd} },
+	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd} },
+	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = passmenu} },
 	{ MODKEY,                       XK_w,      spawn,          {.v = firefox} },
 	{ MODKEY,                       XK_e,      spawn,          {.v = editor} }, 
-	{ MODKEY|ControlMask,		XK_r,	   spawn,	   {.v = ranger} },
-	{ MODKEY|ShiftMask,             XK_d,      spawn,          {.v = discord } },
-	{ MODKEY|ShiftMask,		XK_s,	   spawn,	   {.v = steam } },
+	{ MODKEY,			XK_r,	   spawn,	   {.v = ranger} },
+	{ MODKEY|ShiftMask,             XK_d,      spawn,          {.v = discord} },
+	{ MODKEY|ShiftMask,		XK_s,	   spawn,	   {.v = steam} },
+	{ MODKEY|ShiftMask,		XK_m,	   spawn,	   {.v = ncmpcpp} },
+	{ 0,                            0x1008ff11, spawn,         {.v = voldown} },
+	{ 0,				0x1008ff13, spawn,         {.v = volup} },
+	{ 0,				0x1008ff12, spawn,	   {.v = volmute} },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -100,7 +108,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
-	{ MODKEY,                       XK_r,      setlayout,      {.v = &layouts[3]} },
+	{ MODKEY,                       XK_y,      setlayout,      {.v = &layouts[3]} },
 	{ MODKEY|ShiftMask,             XK_r,      setlayout,      {.v = &layouts[4]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
